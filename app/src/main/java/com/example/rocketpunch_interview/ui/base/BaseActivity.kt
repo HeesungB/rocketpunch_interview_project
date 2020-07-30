@@ -8,7 +8,7 @@ import androidx.databinding.library.baseAdapters.BR
 
 abstract class BaseActivity<baseViewBinding: ViewDataBinding, baseViewModel: BaseViewModel> : AppCompatActivity() {
     abstract val layoutResourceId: Int
-    lateinit var viewDataBinding: baseViewBinding
+    private lateinit var viewDataBinding: baseViewBinding
     abstract val viewModel: baseViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
