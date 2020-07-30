@@ -1,12 +1,10 @@
 package com.example.rocketpunch_interview.ui.message
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.example.rocketpunch_interview.R
 import com.example.rocketpunch_interview.databinding.ActivityMessageBinding
-import com.example.rocketpunch_interview.model.Chat
-import com.example.rocketpunch_interview.model.MessageChannel
-import com.example.rocketpunch_interview.model.User
 import com.example.rocketpunch_interview.ui.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -16,9 +14,15 @@ class MessageActivity : BaseActivity<ActivityMessageBinding, MessageViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         viewModel.isNewMessagePageOpen.observe(this, Observer {
 
+        })
+
+        viewModel.isChatPageOpen.observe(this, Observer {
+            val chatIntent = Intent(this, MessageActivity::class.java)
+            chatIntent.putExtra("messageChannelIdx", viewModel.selectedMessageChannel.value?.idx)
+            startActivity(chatIntent)
         })
 
     }

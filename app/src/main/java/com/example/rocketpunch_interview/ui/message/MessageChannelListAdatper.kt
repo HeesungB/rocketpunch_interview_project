@@ -1,6 +1,5 @@
 package com.example.rocketpunch_interview.ui.message
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
@@ -30,8 +29,6 @@ class MessageChannelListAdapter(var items: List<MessageChannel> = arrayListOf(),
     }
 
     override fun onBindViewHolder(holder: MessageChannelItemViewHolder, position: Int) {
-        Log.d("zz","onBindViewHolder")
-
         holder.binding.item = items[position]
         holder.binding.viewModel = viewModel
     }
@@ -40,16 +37,13 @@ class MessageChannelListAdapter(var items: List<MessageChannel> = arrayListOf(),
 
 @BindingAdapter(value = ["items", "viewModel"])
 fun bindItem(view: RecyclerView, items: List<MessageChannel>?, viewModel: MessageViewModel) {
-
     items?.let {
         view.adapter?.run {
-            Log.d("zz","yes adapter")
             if (this is MessageChannelListAdapter) {
                 this.items = it
                 this.notifyDataSetChanged()
             }
         } ?: run {
-            Log.d("zz","no adapter")
             MessageChannelListAdapter(it, viewModel).apply {
                 this.setHasStableIds(true)
                 view.adapter = this
