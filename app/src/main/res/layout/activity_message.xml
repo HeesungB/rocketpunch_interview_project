@@ -37,7 +37,8 @@
             android:textColor="@color/colorPrimary"
             android:background="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{() -> viewModel.onClickNewMessageChannelButton()}"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/message_header_guide_line"

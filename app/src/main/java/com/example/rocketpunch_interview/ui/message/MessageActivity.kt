@@ -1,6 +1,8 @@
 package com.example.rocketpunch_interview.ui.message
 
 import android.os.Bundle
+import android.util.Log
+import androidx.lifecycle.Observer
 import com.example.rocketpunch_interview.R
 import com.example.rocketpunch_interview.databinding.ActivityMessageBinding
 import com.example.rocketpunch_interview.ui.base.BaseActivity
@@ -12,6 +14,10 @@ class MessageActivity : BaseActivity<ActivityMessageBinding, MessageViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
+        viewModel.isNewMessagePageOpen.observe(this, Observer {
+
+            Log.d("zz", "move to new message page")
+        })
     }
 }
