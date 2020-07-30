@@ -2,5 +2,7 @@
     <string name="app_name">RocketPunch_Interview</string>
 
     <string name="activity_message_title">메시지</string>
-    <string name="activity_new_message_button_title">새 메시지</string>
+    <string name="activity_message_new_button_title">새 메시지</string>
+
+    <string name="activity_message_profile_image_description">내 프로필 이미지</string>
 </resources>

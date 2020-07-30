@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_message_header_top_margin"
-            android:text="@string/activity_new_message_button_title"
+            android:text="@string/activity_message_new_button_title"
             android:textSize="@dimen/activity_message_new_message_button_text_size"
             android:textColor="@color/colorPrimary"
             android:background="@android:color/transparent"
