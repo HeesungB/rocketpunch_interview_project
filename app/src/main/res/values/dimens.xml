@@ -6,4 +6,18 @@
     <dimen name="activity_message_title_text_size">20sp</dimen>
 
     <dimen name="activity_message_new_message_button_text_size">15sp</dimen>
+
+
+    <dimen name="row_message_channel_top_horizontal_guide_line_begin">20dp</dimen>
+    <dimen name="row_message_channel_user_profile_height">80dp</dimen>
+    <dimen name="row_message_channel_user_profile_width">80dp</dimen>
+    <dimen name="row_message_channel_user_profile_left_margin">20dp</dimen>
+
+    <dimen name="row_message_channel_user_info_vertical_guide_line_begin">110dp</dimen>
+
+    <dimen name="row_message_channel_user_name_text_size">20sp</dimen>
+
+    <dimen name="row_message_channel_message_status_vertical_guide_line_end">20dp</dimen>
+
+    <dimen name="row_message_channel_unread_count_padding">5dp</dimen>
 </resources>
