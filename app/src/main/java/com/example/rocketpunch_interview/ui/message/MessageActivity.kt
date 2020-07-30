@@ -5,7 +5,11 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.example.rocketpunch_interview.R
 import com.example.rocketpunch_interview.databinding.ActivityMessageBinding
+import com.example.rocketpunch_interview.model.Chat
+import com.example.rocketpunch_interview.model.MessageChannel
+import com.example.rocketpunch_interview.model.User
 import com.example.rocketpunch_interview.ui.base.BaseActivity
+import com.example.rocketpunch_interview.ui.chat.ChatActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MessageActivity : BaseActivity<ActivityMessageBinding, MessageViewModel>() {
@@ -15,14 +19,31 @@ class MessageActivity : BaseActivity<ActivityMessageBinding, MessageViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val user1 = User(1,"1","1","1")
+        val user2 = User(2,"2","2","2")
+        val chat = Chat(1,user1,user2, "test","test",false)
+        val messageChannel = MessageChannel(
+            1,
+            arrayListOf(user1, user1),
+            chat,
+            1
+        )
+
+        viewModel.setList(messageChannel)
+        viewModel.setList(messageChannel)
+        viewModel.setList(messageChannel)
+        viewModel.setList(messageChannel)
+        viewModel.setList(messageChannel)
+        viewModel.setList(messageChannel)
+        viewModel.setList(messageChannel)
+
+
         viewModel.isNewMessagePageOpen.observe(this, Observer {
 
         })
 
         viewModel.isChatPageOpen.observe(this, Observer {
-            val chatIntent = Intent(this, MessageActivity::class.java)
-            chatIntent.putExtra("messageChannelIdx", viewModel.selectedMessageChannel.value?.idx)
-            startActivity(chatIntent)
+            startActivity(Intent(this, ChatActivity::class.java))
         })
 
     }
