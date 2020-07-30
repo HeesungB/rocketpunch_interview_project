@@ -6,5 +6,6 @@ data class Chat(
     val receiver: User,
     val content: String,
     val dateTime: String,
-    val isRead: Boolean
+    val isRead: Boolean,
+    val viewType: RowType
 )
