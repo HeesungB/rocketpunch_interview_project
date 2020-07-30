@@ -1,7 +1,6 @@
 package com.example.rocketpunch_interview.ui.message
 
-import androidx.lifecycle.ViewModel
+import com.example.rocketpunch_interview.ui.base.BaseViewModel
 
-class MessageViewModel: ViewModel() {
-
+class MessageViewModel: BaseViewModel() {
 }
