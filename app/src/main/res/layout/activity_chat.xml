@@ -20,7 +20,8 @@
             android:layout_margin="@dimen/activity_message_header_top_margin"
             android:background="@drawable/ic_clear_24px"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{() -> viewModel.onClickBackButton()}"/>
 
         <TextView
             android:id="@+id/user_name"
