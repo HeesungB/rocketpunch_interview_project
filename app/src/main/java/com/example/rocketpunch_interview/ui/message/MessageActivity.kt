@@ -1,7 +1,8 @@
-package com.example.rocketpunch_interview
+package com.example.rocketpunch_interview.ui.message
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.rocketpunch_interview.R
 
 class MessageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
