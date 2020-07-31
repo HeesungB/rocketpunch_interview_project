@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:fullBackupContent="@xml/backup_descriptor">
-        <activity android:name=".ui.message.MessageActivity">
+
+        <activity android:name=".ui.splash.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,6 +23,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.message.MessageActivity"/>
         <activity android:name=".ui.chat.ChatActivity"/>
     </application>
 

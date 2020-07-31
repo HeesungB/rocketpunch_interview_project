@@ -3,7 +3,7 @@ package com.example.rocketpunch_interview.repository
 import androidx.lifecycle.MutableLiveData
 import com.example.rocketpunch_interview.model.MessageChannel
 
-class MessageChannelRepositoryImpl(): MessageChannelRepository{
+class MessageChannelRepositoryImpl : MessageChannelRepository{
     private val _selectedMessageChannel = MutableLiveData<MessageChannel>()
 
     override val selectedMessageChannel:MutableLiveData<MessageChannel> get() = _selectedMessageChannel
