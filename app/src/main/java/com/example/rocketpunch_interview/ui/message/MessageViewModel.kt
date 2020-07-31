@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.rocketpunch_interview.model.MessageChannel
 import com.example.rocketpunch_interview.model.SingleLiveEvent
-import com.example.rocketpunch_interview.repository.MessageChannelRepository
+import com.example.rocketpunch_interview.data.repository.message.MessageChannelRepository
 import com.example.rocketpunch_interview.ui.base.BaseViewModel
 
 class MessageViewModel(private val messageChannelRepository: MessageChannelRepository): BaseViewModel() {

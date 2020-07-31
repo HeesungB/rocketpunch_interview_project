@@ -11,6 +11,7 @@ import com.example.rocketpunch_interview.model.RowType
 import com.example.rocketpunch_interview.model.User
 import com.example.rocketpunch_interview.ui.base.BaseActivity
 import com.example.rocketpunch_interview.ui.chat.ChatActivity
+import com.example.rocketpunch_interview.ui.new_message.NewMessageActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MessageActivity : BaseActivity<ActivityMessageBinding, MessageViewModel>() {
@@ -40,7 +41,7 @@ class MessageActivity : BaseActivity<ActivityMessageBinding, MessageViewModel>()
 
 
         viewModel.isNewMessagePageOpen.observe(this, Observer {
-
+            startActivity(Intent(this, NewMessageActivity::class.java))
         })
 
         viewModel.isChatPageOpen.observe(this, Observer {

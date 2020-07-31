@@ -1,4 +1,4 @@
-package com.example.rocketpunch_interview.repository
+package com.example.rocketpunch_interview.data.repository.message
 
 import androidx.lifecycle.MutableLiveData
 import com.example.rocketpunch_interview.model.MessageChannel
