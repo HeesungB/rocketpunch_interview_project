@@ -19,8 +19,8 @@ class ChatActivity: BaseActivity<ActivityChatBinding, ChatViewModel>() {
 
         val myChat = Chat(
             1,
-            User(1,"test user 1", "test descripton 1", "test profile"),
-            User(2,"test user 2", "test descripton 2", "test profile"),
+            User("1","test user 1", "test descripton 1", "test profile"),
+            User("2","test user 2", "test descripton 2", "test profile"),
             "my chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chatmy chat",
             "5분 전",
             false,
@@ -29,8 +29,8 @@ class ChatActivity: BaseActivity<ActivityChatBinding, ChatViewModel>() {
 
         val otherChat = Chat(
             2,
-            User(2,"test user 2", "test descripton 2", "test profile"),
-            User(1,"test user 1", "test descripton 1", "test profile"),
+            User("2","test user 2", "test descripton 2", "test profile"),
+            User("!","test user 1", "test descripton 1", "test profile"),
             "other chat",
             "방금 전",
             false,

@@ -20,8 +20,8 @@ class MessageActivity : BaseActivity<ActivityMessageBinding, MessageViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val user1 = User(1,"1","1","1")
-        val user2 = User(2,"2","2","2")
+        val user1 = User("1","1","1","1")
+        val user2 = User("2","2","2","2")
         val chat = Chat(1,user1,user2, "test","test",false, RowType.OTHERCHAT)
         val messageChannel = MessageChannel(
             1,
