@@ -4,7 +4,11 @@ import androidx.lifecycle.LiveData
 import com.example.rocketpunch_interview.model.User
 
 interface UserRepository {
+    val myUser: LiveData<User>
     val searchedList: LiveData<List<User>>
 
+    fun setMyUser()
+
+    fun initUserSearchList()
     fun searchUser(searchValue: String)
 }

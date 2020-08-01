@@ -96,7 +96,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:background="@drawable/message_count_round_corner"
             android:textColor="@color/colorWhite"
-            android:text="@{Integer.toString(item.unreadChatCount)}"
+            android:text="@{Long.toString(item.unreadChatCount)}"
             />
 
 

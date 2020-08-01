@@ -1,9 +1,9 @@
-package com.example.rocketpunch_interview.util
+package com.example.rocketpunch_interview.data.datasource
 
 import android.content.Context
 import android.content.SharedPreferences
 
-class PreferenceUtil(context: Context) {
+class PreferencesService(context: Context) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
 
     fun hasValue(key: String): Boolean {

@@ -14,7 +14,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> viewModel.onClickSearchedUser(item)}">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/top_guideline"

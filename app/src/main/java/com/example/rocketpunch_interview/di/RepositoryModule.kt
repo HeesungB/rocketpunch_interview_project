@@ -8,5 +8,5 @@ import org.koin.dsl.module
 
 var repositoryModule = module {
     single<UserRepository> { UserRepositoryImpl(get()) }
-    single<MessageChannelRepository> { MessageChannelRepositoryImpl() }
+    single<MessageChannelRepository> { MessageChannelRepositoryImpl(get()) }
 }
