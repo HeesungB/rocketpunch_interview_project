@@ -1,13 +1,9 @@
 package com.example.rocketpunch_interview.ui.chat
 
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import com.example.rocketpunch_interview.R
 import com.example.rocketpunch_interview.databinding.ActivityChatBinding
-import com.example.rocketpunch_interview.model.Chat
-import com.example.rocketpunch_interview.model.RowType
-import com.example.rocketpunch_interview.model.User
 import com.example.rocketpunch_interview.ui.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

@@ -3,7 +3,6 @@ package com.example.rocketpunch_interview.data.datasource
 import androidx.lifecycle.LiveData
 import com.example.rocketpunch_interview.model.MessageChannel
 import com.example.rocketpunch_interview.model.User
-import java.util.ArrayList
 
 interface DataSource {
     val myUser: LiveData<User>

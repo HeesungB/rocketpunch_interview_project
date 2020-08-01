@@ -7,7 +7,7 @@ import com.example.rocketpunch_interview.ui.splash.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-var viewmodelAppModule = module {
+var viewModelAppModule = module {
     viewModel { SplashViewModel(get()) }
     viewModel { MessageViewModel(get(),get()) }
     viewModel { ChatViewModel(get()) }

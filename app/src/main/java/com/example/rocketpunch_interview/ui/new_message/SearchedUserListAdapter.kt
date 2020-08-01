@@ -1,6 +1,5 @@
 package com.example.rocketpunch_interview.ui.new_message
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter

@@ -2,7 +2,6 @@ package com.example.rocketpunch_interview.data.repository.user
 
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.rocketpunch_interview.data.datasource.DataSource
 import com.example.rocketpunch_interview.model.User
 

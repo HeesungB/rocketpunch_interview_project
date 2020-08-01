@@ -1,6 +1,5 @@
 package com.example.rocketpunch_interview.data.datasource
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.rocketpunch_interview.model.Chat
@@ -67,27 +66,27 @@ class FireStoreService(
         firebaseFirestore.collection("message_channel").whereArrayContainsAny("userList", arrayListOf(myUser.value)).get().addOnSuccessListener { documents ->
             val documentMessageChannelList = arrayListOf<MessageChannel>()
 
-            for (docuemnt in documents) {
-                val userList = docuemnt.data["userList"] as ArrayList<*>
+            for (document in documents) {
+                val userList = document.data["userList"] as ArrayList<*>
                 var opponentUser: User? = null
 
                 for (user in userList) {
-                    val user = user as Map<*, *>
-                    if(preferencesService.getString("user_id","") != user.get("id") as String) {
+                    val tempUser = user as Map<*, *>
+                    if(preferencesService.getString("user_id","") != tempUser["id"] as String) {
                         opponentUser = User(
-                            user.get("id") as String,
-                            user.get("name") as String,
-                            user.get("description") as String,
-                            user.get("profileImage") as String
+                            tempUser["id"] as String,
+                            tempUser["name"] as String,
+                            tempUser["description"] as String,
+                            tempUser["profileImage"] as String
                         )
                     }
                 }
 
                 documentMessageChannelList.add(
                     MessageChannel(
-                        docuemnt.data["userList"] as List<User>,
-                        docuemnt.data["currentChat"] as Chat?,
-                        docuemnt.data["unreadChatCount"] as Long,
+                        document.data["userList"] as List<User>,
+                        document.data["currentChat"] as Chat?,
+                        document.data["unreadChatCount"] as Long,
                         opponentUser
                     )
                 )
@@ -106,7 +105,7 @@ class FireStoreService(
             if (it.isEmpty) {
                 createMessageChannel(userList)
             } else {
-                var messageChannel = it.documents[0].toObject(MessageChannel::class.java)!!
+                val messageChannel = it.documents[0].toObject(MessageChannel::class.java)!!
                 messageChannel.opponentUser = getOpponentUser(userList)
                 setMessageChannelList(messageChannel)
             }
@@ -126,8 +125,7 @@ class FireStoreService(
     }
 
     private fun createMessageChannel(userList: List<User>) {
-
-        var newMessageChannel = MessageChannel(
+        val newMessageChannel = MessageChannel(
             userList,
             null,
             0,

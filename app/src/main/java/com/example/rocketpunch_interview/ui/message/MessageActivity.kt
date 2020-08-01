@@ -5,10 +5,6 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.example.rocketpunch_interview.R
 import com.example.rocketpunch_interview.databinding.ActivityMessageBinding
-import com.example.rocketpunch_interview.model.Chat
-import com.example.rocketpunch_interview.model.MessageChannel
-import com.example.rocketpunch_interview.model.RowType
-import com.example.rocketpunch_interview.model.User
 import com.example.rocketpunch_interview.ui.base.BaseActivity
 import com.example.rocketpunch_interview.ui.chat.ChatActivity
 import com.example.rocketpunch_interview.ui.new_message.NewMessageActivity

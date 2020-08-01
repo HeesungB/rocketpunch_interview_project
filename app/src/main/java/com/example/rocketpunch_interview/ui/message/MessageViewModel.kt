@@ -1,9 +1,6 @@
 package com.example.rocketpunch_interview.ui.message
 
-import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.example.rocketpunch_interview.model.MessageChannel
 import com.example.rocketpunch_interview.model.SingleLiveEvent
 import com.example.rocketpunch_interview.data.repository.message.MessageChannelRepository

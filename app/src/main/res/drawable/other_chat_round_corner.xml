@@ -4,7 +4,7 @@
         android:width="@dimen/round_corner_border"
         android:color="@android:color/transparent"/>
 
-    <solid android:color="@color/otherMessageBackgroud" />
+    <solid android:color="@color/otherMessageBackground" />
 
     <padding
         android:left="@dimen/round_corner_padding"

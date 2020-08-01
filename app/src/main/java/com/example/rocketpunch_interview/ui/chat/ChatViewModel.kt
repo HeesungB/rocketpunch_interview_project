@@ -19,8 +19,4 @@ class ChatViewModel(messageChannelRepository: MessageChannelRepository): BaseVie
     fun onClickBackButton() {
         _isPageClosed.call()
     }
-
-    fun setList(chat: Chat) {
-        _chatList.value?.add(chat)
-    }
 }
