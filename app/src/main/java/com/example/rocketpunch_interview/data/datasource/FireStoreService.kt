@@ -2,9 +2,7 @@ package com.example.rocketpunch_interview.data.datasource
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.rocketpunch_interview.model.Chat
-import com.example.rocketpunch_interview.model.MessageChannel
-import com.example.rocketpunch_interview.model.User
+import com.example.rocketpunch_interview.model.*
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
@@ -14,14 +12,14 @@ class FireStoreService(
     private val preferencesService: PreferencesService
 ): DataSource {
     private val _myUser = MutableLiveData<User>()
-    private val _messageChannelList = MutableLiveData<List<MessageChannel>>(listOf())
+    private val _channelList = MutableLiveData<List<Channel>>(listOf())
     private val _searchedList = MutableLiveData<List<User>>(listOf())
-    private val _selectedMessageChannel = MutableLiveData<MessageChannel>()
+    private val _selectedChannel = MutableLiveData<Channel>()
 
     override val myUser: LiveData<User> get() = _myUser
-    override val messageChannelList: LiveData<List<MessageChannel>> get() = _messageChannelList
+    override val channelList: LiveData<List<Channel>> get() = _channelList
     override val searchedList: LiveData<List<User>> get() = _searchedList
-    override val selectedMessageChannel: LiveData<MessageChannel> get() = _selectedMessageChannel
+    override val selectedChannel: LiveData<Channel> get() = _selectedChannel
 
     override fun setMyUser() {
         if (preferencesService.hasValue("user_id")) {
@@ -62,9 +60,9 @@ class FireStoreService(
         }
     }
 
-    override fun getMessageChannelList() {
-        firebaseFirestore.collection("message_channel").whereArrayContainsAny("userList", arrayListOf(myUser.value)).get().addOnSuccessListener { documents ->
-            val documentMessageChannelList = arrayListOf<MessageChannel>()
+    override fun getChannelList() {
+        firebaseFirestore.collection("channel").whereArrayContainsAny("userList", arrayListOf(myUser.value)).get().addOnSuccessListener { documents ->
+            val tempChannelList = arrayListOf<Channel>()
 
             for (document in documents) {
                 val userList = document.data["userList"] as ArrayList<*>
@@ -82,32 +80,42 @@ class FireStoreService(
                     }
                 }
 
-                documentMessageChannelList.add(
-                    MessageChannel(
+                if (userList[0] == userList[1]) {
+                    val tempUser = userList[0] as Map<*, *>
+                    opponentUser = User(
+                        tempUser["id"] as String,
+                        tempUser["name"] as String,
+                        tempUser["description"] as String,
+                        tempUser["profileImage"] as String
+                    )
+                }
+
+                tempChannelList.add(
+                    Channel(
+                        document.id,
                         document.data["userList"] as List<User>,
                         document.data["currentChat"] as Chat?,
                         document.data["unreadChatCount"] as Long,
-                        opponentUser
+                        opponentUser!!
                     )
                 )
             }
 
-            _messageChannelList.value = documentMessageChannelList
+            _channelList.value = tempChannelList
         }
     }
 
-    override fun setMessageChannelList(messageChannel: MessageChannel) {
-        _selectedMessageChannel.value = messageChannel
+    override fun setChannelList(channel: Channel) {
+        _selectedChannel.value = channel
     }
 
-    override fun openMessageChannel(userList: List<User>) {
-        firebaseFirestore.collection("message_channel").whereIn("userList", arrayListOf(userList)).get().addOnSuccessListener {
+    override fun openChannel(userList: List<User>) {
+        firebaseFirestore.collection("channel").whereIn("userList", arrayListOf(userList)).get().addOnSuccessListener {
             if (it.isEmpty) {
-                createMessageChannel(userList)
+                createChannel(userList)
             } else {
-                val messageChannel = it.documents[0].toObject(MessageChannel::class.java)!!
-                messageChannel.opponentUser = getOpponentUser(userList)
-                setMessageChannelList(messageChannel)
+                val channelDto = it.documents[0].toObject(ChannelDto::class.java)!!
+                setChannelList(convertChannel(channelDto,it.documents[0].id))
             }
         }
     }
@@ -121,22 +129,33 @@ class FireStoreService(
             }
         }
 
+        if(userList[0] == userList[1]) {
+            opponentUser = userList[0]
+        }
+
         return opponentUser
     }
 
-    private fun createMessageChannel(userList: List<User>) {
-        val newMessageChannel = MessageChannel(
+    private fun createChannel(userList: List<User>) {
+        val newChannel = ChannelDto(
             userList,
             null,
-            0,
-            getOpponentUser(userList)
+            0
         )
 
-        firebaseFirestore.collection("message_channel").add(
-            newMessageChannel
-        )
+        firebaseFirestore.collection("channel").add(newChannel).addOnSuccessListener {
+            setChannelList(convertChannel(newChannel,it.id))
+        }
+    }
 
-        setMessageChannelList(newMessageChannel)
+    private fun convertChannel(channelDto: ChannelDto, idx: String): Channel {
+        return Channel(
+            idx,
+            channelDto.userList,
+            channelDto.currentChat,
+            channelDto.unreadChatCount,
+            getOpponentUser(channelDto.userList)
+        )
     }
 
 }

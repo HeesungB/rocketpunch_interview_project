@@ -7,13 +7,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.rocketpunch_interview.ui.message.MessageViewModel" />
+            type="com.example.rocketpunch_interview.ui.channel.ChannelViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.message.MessageActivity">
+        tools:context=".ui.channel.ChannelActivity">
 
         <TextView
             android:id="@+id/message_title"
@@ -38,7 +38,7 @@
             android:background="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{() -> viewModel.onClickNewMessageChannelButton()}"/>
+            android:onClick="@{() -> viewModel.onClickNewChannelButton()}"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/message_header_guide_line"
@@ -55,7 +55,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:items="@{viewModel.messageChannelList}"
+            app:items="@{viewModel.channelList}"
             app:viewModel="@{viewModel}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

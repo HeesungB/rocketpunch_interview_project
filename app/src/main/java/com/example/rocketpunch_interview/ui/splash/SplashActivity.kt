@@ -3,7 +3,7 @@ package com.example.rocketpunch_interview.ui.splash
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.rocketpunch_interview.ui.message.MessageActivity
+import com.example.rocketpunch_interview.ui.channel.ChannelActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashActivity: AppCompatActivity() {
@@ -14,7 +14,7 @@ class SplashActivity: AppCompatActivity() {
 
         viewModel.onAppStart()
 
-        startActivity(Intent(this, MessageActivity::class.java))
+        startActivity(Intent(this, ChannelActivity::class.java))
         finish()
     }
 }
