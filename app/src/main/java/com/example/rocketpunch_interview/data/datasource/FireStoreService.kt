@@ -1,5 +1,6 @@
 package com.example.rocketpunch_interview.data.datasource
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.rocketpunch_interview.model.*
@@ -62,46 +63,14 @@ class FireStoreService(
 
     override fun getChannelList() {
         firebaseFirestore.collection("channel").whereArrayContainsAny("userList", arrayListOf(myUser.value)).get().addOnSuccessListener { documents ->
-            val tempChannelList = arrayListOf<Channel>()
+            val documentChannelList = arrayListOf<Channel>()
 
             for (document in documents) {
-                val userList = document.data["userList"] as ArrayList<*>
-                var opponentUser: User? = null
-
-                for (user in userList) {
-                    val tempUser = user as Map<*, *>
-                    if(preferencesService.getString("user_id","") != tempUser["id"] as String) {
-                        opponentUser = User(
-                            tempUser["id"] as String,
-                            tempUser["name"] as String,
-                            tempUser["description"] as String,
-                            tempUser["profileImage"] as String
-                        )
-                    }
-                }
-
-                if (userList[0] == userList[1]) {
-                    val tempUser = userList[0] as Map<*, *>
-                    opponentUser = User(
-                        tempUser["id"] as String,
-                        tempUser["name"] as String,
-                        tempUser["description"] as String,
-                        tempUser["profileImage"] as String
-                    )
-                }
-
-                tempChannelList.add(
-                    Channel(
-                        document.id,
-                        document.data["userList"] as List<User>,
-                        document.data["currentChat"] as Chat?,
-                        document.data["unreadChatCount"] as Long,
-                        opponentUser!!
-                    )
-                )
+                val channelDto = document.toObject(ChannelDto::class.java)
+                documentChannelList.add(convertChannel(channelDto, document.id))
             }
 
-            _channelList.value = tempChannelList
+            _channelList.value = documentChannelList
         }
     }
 
