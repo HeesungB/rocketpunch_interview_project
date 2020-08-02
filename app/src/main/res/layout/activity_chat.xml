@@ -15,9 +15,9 @@
 
         <Button
             android:id="@+id/back_button"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_margin="@dimen/activity_message_header_top_margin"
+            android:layout_width="@dimen/header_back_button_size"
+            android:layout_height="@dimen/header_back_button_size"
+            android:layout_margin="@dimen/header_top_margin"
             android:background="@drawable/ic_clear_24px"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,9 +27,9 @@
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@{viewModel.selectedMessageChannel.opponentUser.name}"
-            android:textSize="@dimen/activity_message_title_text_size"
+            android:layout_marginTop="@dimen/header_top_margin"
+            android:text="@{viewModel.selectedChannel.opponentUser.name}"
+            android:textSize="@dimen/header_title_text_size"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
             android:id="@+id/user_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.selectedMessageChannel.opponentUser.description}"
+            android:text="@{viewModel.selectedChannel.opponentUser.description}"
             app:layout_constraintTop_toBottomOf="@+id/user_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="@dimen/activity_message_header_guide_line_begin"/>
+            app:layout_constraintGuide_begin="@dimen/header_guide_line_begin"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/chat_list"
@@ -68,16 +68,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="80dp"/>
+            app:layout_constraintGuide_end="@dimen/activity_chat_bottom_guide_line_end"/>
 
         <EditText
-            android:id="@+id/chatContent"
+            android:id="@+id/chat_content_text"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:hint="메시지를 입력하세요"
+            android:hint="@string/activity_chat_content_text_hint"
             android:text="@={viewModel.currentContent}"
             android:inputType="text"
-            android:padding="10dp"
+            android:padding="@dimen/edit_text_padding"
             android:background="@android:color/transparent"
             app:layout_constraintTop_toBottomOf="@id/bottom_guide_line"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,14 +87,15 @@
 
         <ImageButton
             android:id="@+id/send_button"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/activity_chat_bottom_guide_line_end"
+            android:layout_height="@dimen/activity_chat_bottom_guide_line_end"
             android:src="@drawable/ic_send_24px"
             android:background="@android:color/transparent"
             app:layout_constraintTop_toBottomOf="@id/bottom_guide_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:onClick="@{() -> viewModel.sendChat()}"/>
+            android:onClick="@{() -> viewModel.sendChat()}"
+            android:contentDescription="@string/activity_chat_send_button_description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

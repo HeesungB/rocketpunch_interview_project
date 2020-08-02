@@ -22,18 +22,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="@dimen/row_message_channel_top_horizontal_guide_line_begin"
+            app:layout_constraintGuide_begin="@dimen/row_channel_top_horizontal_guide_line_begin"
             />
 
         <ImageView
             android:id="@+id/user_profile"
-            android:layout_width="@dimen/row_message_channel_user_profile_width"
-            android:layout_height="@dimen/row_message_channel_user_profile_height"
-            android:layout_marginLeft="@dimen/row_message_channel_user_profile_left_margin"
-            android:layout_marginStart="@dimen/row_message_channel_user_profile_left_margin"
+            android:layout_width="@dimen/user_profile_size"
+            android:layout_height="@dimen/user_profile_size"
+            android:layout_marginLeft="@dimen/user_profile_margin"
+            android:layout_marginStart="@dimen/user_profile_margin"
             app:layout_constraintTop_toBottomOf="@id/top_guideline"
             app:layout_constraintStart_toStartOf="parent"
-            android:contentDescription="@string/activity_message_profile_image_description"
+            android:contentDescription="@string/user_profile_image_description"
             android:src="@drawable/ic_account_box_24px" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="@dimen/row_message_channel_user_info_vertical_guide_line_begin"/>
+            app:layout_constraintGuide_begin="@dimen/user_info_vertical_guide_line_begin"/>
 
         <TextView
             android:id="@+id/user_name"
@@ -51,7 +51,7 @@
             app:layout_constraintTop_toTopOf="@id/top_guideline"
             app:layout_constraintStart_toEndOf="@+id/message_user_info_guideline"
             android:textStyle="bold"
-            android:textSize="@dimen/row_message_channel_user_name_text_size"
+            android:textSize="@dimen/user_name_text_size"
             android:text="@{item.name}"/>
 
         <TextView

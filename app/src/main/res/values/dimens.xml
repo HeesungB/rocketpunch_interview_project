@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="activity_message_header_top_margin">20dp</dimen>
-    <dimen name="activity_message_header_guide_line_begin">80dp</dimen>
+    <!-- Global Header -->
+    <dimen name="header_top_margin">15dp</dimen>
+    <dimen name="header_guide_line_begin">80dp</dimen>
+    <dimen name="header_title_text_size">20sp</dimen>
+    <dimen name="header_button_text_size">15sp</dimen>
+    <dimen name="header_back_button_size">35sp</dimen>
 
-    <dimen name="activity_message_title_text_size">20sp</dimen>
+    <!-- Global EditText -->
+    <dimen name="edit_text_padding">15dp</dimen>
 
-    <dimen name="activity_message_new_message_button_text_size">15sp</dimen>
+    <!-- Global User -->
+    <dimen name="user_profile_size">80dp</dimen>
+    <dimen name="user_profile_margin">20dp</dimen>
+    <dimen name="user_info_vertical_guide_line_begin">110dp</dimen>
+    <dimen name="user_name_text_size">20sp</dimen>
+
+    <!-- Activity Chat -->
+    <dimen name="activity_chat_bottom_guide_line_end">80dp</dimen>
 
 
-    <dimen name="row_message_channel_top_horizontal_guide_line_begin">20dp</dimen>
-    <dimen name="row_message_channel_user_profile_height">80dp</dimen>
-    <dimen name="row_message_channel_user_profile_width">80dp</dimen>
-    <dimen name="row_message_channel_user_profile_left_margin">20dp</dimen>
+    <!-- Row Message Channel -->
+    <dimen name="row_channel_top_horizontal_guide_line_begin">20dp</dimen>
+    <dimen name="row_channel_chat_status_vertical_guide_line_end">20dp</dimen>
+    <dimen name="row_channel_unread_count_padding">5dp</dimen>
 
-    <dimen name="row_message_channel_user_info_vertical_guide_line_begin">110dp</dimen>
+    <!-- Row Chat -->
+    <dimen name="row_chat_time_ago_margin">10dp</dimen>
+    <dimen name="row_chat_content_max_width">250dp</dimen>
+    <dimen name="row_chat_content_padding">10dp</dimen>
+    <dimen name="row_chat_content_margin">20dp</dimen>
 
-    <dimen name="row_message_channel_user_name_text_size">20sp</dimen>
-
-    <dimen name="row_message_channel_message_status_vertical_guide_line_end">20dp</dimen>
-
-    <dimen name="row_message_channel_unread_count_padding">5dp</dimen>
-
+    <!-- Round Corner -->
     <dimen name="round_corner_border">1dp</dimen>
     <dimen name="round_corner_radius">10dp</dimen>
     <dimen name="round_corner_padding">1dp</dimen>
