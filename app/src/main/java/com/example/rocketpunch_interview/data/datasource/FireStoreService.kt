@@ -1,17 +1,10 @@
 package com.example.rocketpunch_interview.data.datasource
 
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.rocketpunch_interview.model.*
-import com.google.firebase.firestore.DocumentChange
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.type.DateTime
-import java.sql.Time
-import java.time.LocalDateTime
 import java.util.*
 
 
@@ -94,7 +87,6 @@ class FireStoreService(
             } else {
                 val channelDto = it.documents[0].toObject(ChannelDto::class.java)!!
                 setChannelList(convertChannel(channelDto,it.documents[0].id))
-
             }
         }
     }
@@ -157,21 +149,20 @@ class FireStoreService(
                 return@addSnapshotListener
             }
 
-            val tempchatList = ArrayList<Chat>()
+            val tempChatList = ArrayList<Chat>()
             for (doc in snapshots!!) {
-                tempchatList.add(convertChat(doc.toObject(ChatDto::class.java)))
+                tempChatList.add(convertChat(doc.toObject(ChatDto::class.java)))
             }
 
-            _chatList.value = tempchatList
+            _chatList.value = tempChatList
         }
     }
 
     private fun convertChat(chatDto: ChatDto): Chat {
-        lateinit var rowType: RowType
-        if (_myUser.value == chatDto.sender) {
-            rowType = RowType.MYCHAT
+        val rowType = if(_myUser.value == chatDto.sender) {
+            RowType.MYCHAT
         } else {
-            rowType = RowType.OTHERCHAT
+            RowType.OTHERCHAT
         }
 
         return Chat(
@@ -183,6 +174,10 @@ class FireStoreService(
             chatDto.isRead,
             rowType
         )
+    }
+
+    override fun initChatList() {
+        _chatList.value = listOf()
     }
 
 }

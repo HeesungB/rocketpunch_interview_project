@@ -8,15 +8,15 @@ import com.example.rocketpunch_interview.model.Channel
 import com.example.rocketpunch_interview.ui.base.BaseViewModel
 
 class ChannelViewModel(
-    private val userRepository: UserRepository,
+    userRepository: UserRepository,
     private val channelRepository: ChannelRepository
 ): BaseViewModel() {
-    private val _isNewMessagePageOpen = SingleLiveEvent<Any>()
+    private val _isNewChannelPageOpen = SingleLiveEvent<Any>()
     private val _isChatPageOpen = SingleLiveEvent<Any>()
 
     val myUser = userRepository.myUser
 
-    val isNewMessagePageOpen: LiveData<Any> get() = _isNewMessagePageOpen
+    val isNewChannelPageOpen: LiveData<Any> get() = _isNewChannelPageOpen
     val isChatPageOpen: LiveData<Any> get() = _isChatPageOpen
 
     val channelList = channelRepository.channelList
@@ -26,7 +26,7 @@ class ChannelViewModel(
     }
 
     fun onClickNewChannelButton() {
-        _isNewMessagePageOpen.call()
+        _isNewChannelPageOpen.call()
     }
 
     fun onClickChannelItem(channel: Channel) {

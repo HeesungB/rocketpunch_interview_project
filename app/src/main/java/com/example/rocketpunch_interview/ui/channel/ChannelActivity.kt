@@ -17,7 +17,7 @@ class ChannelActivity : BaseActivity<ActivityChannelBinding, ChannelViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.isNewMessagePageOpen.observe(this, Observer {
+        viewModel.isNewChannelPageOpen.observe(this, Observer {
             startActivity(Intent(this, NewChannelActivity::class.java))
         })
 

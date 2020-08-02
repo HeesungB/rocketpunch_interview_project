@@ -12,4 +12,8 @@ class ChatRepositoryImpl(private val dataSource: DataSource): ChatRepository {
     override fun connectChatList() {
         dataSource.connectChatList()
     }
+
+    override fun initChatList() {
+        dataSource.initChatList()
+    }
 }

@@ -24,4 +24,5 @@ interface DataSource {
 
     fun sendChat(content: String)
     fun connectChatList()
+    fun initChatList()
 }

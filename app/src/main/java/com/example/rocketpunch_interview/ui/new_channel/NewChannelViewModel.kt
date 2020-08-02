@@ -27,6 +27,7 @@ class NewChannelViewModel(
     }
 
     fun onClickBackButton() {
+        userRepository.initUserSearchList()
         _isPageClosed.call()
     }
 
