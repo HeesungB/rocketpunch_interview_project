@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.rocketpunch_interview.ui.new_message.NewMessageViewModel" />
+            type="com.example.rocketpunch_interview.ui.new_channel.NewChannelViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

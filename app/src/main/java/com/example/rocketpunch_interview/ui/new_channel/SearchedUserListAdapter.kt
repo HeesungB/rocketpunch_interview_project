@@ -1,4 +1,4 @@
-package com.example.rocketpunch_interview.ui.new_message
+package com.example.rocketpunch_interview.ui.new_channel
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ import com.example.rocketpunch_interview.model.User
 
 class UserViewHolder(val binding: RowUserBinding) : RecyclerView.ViewHolder(binding.root)
 
-class SearchedUserListAdapter(var items: List<User> = arrayListOf(), var viewModel: NewMessageViewModel): RecyclerView.Adapter<UserViewHolder>() {
+class SearchedUserListAdapter(var items: List<User> = arrayListOf(), var viewModel: NewChannelViewModel): RecyclerView.Adapter<UserViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         return UserViewHolder(
             DataBindingUtil.inflate(
@@ -40,7 +40,7 @@ class SearchedUserListAdapter(var items: List<User> = arrayListOf(), var viewMod
 }
 
 @BindingAdapter(value = ["items", "viewModel"])
-fun bindItem(view: RecyclerView, items: List<User>?, viewModel: NewMessageViewModel) {
+fun bindItem(view: RecyclerView, items: List<User>?, viewModel: NewChannelViewModel) {
     items?.let {
         view.adapter?.run {
             if (this is SearchedUserListAdapter) {

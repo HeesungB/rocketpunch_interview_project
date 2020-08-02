@@ -1,4 +1,4 @@
-package com.example.rocketpunch_interview.ui.new_message
+package com.example.rocketpunch_interview.ui.new_channel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,7 @@ import com.example.rocketpunch_interview.model.SingleLiveEvent
 import com.example.rocketpunch_interview.model.User
 import com.example.rocketpunch_interview.ui.base.BaseViewModel
 
-class NewMessageViewModel(
+class NewChannelViewModel(
     private val userRepository: UserRepository,
     private val channelRepository: ChannelRepository
 ): BaseViewModel() {

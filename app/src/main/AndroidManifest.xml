@@ -25,7 +25,7 @@
 
         <activity android:name=".ui.channel.ChannelActivity"/>
         <activity android:name=".ui.chat.ChatActivity"/>
-        <activity android:name=".ui.new_message.NewMessageActivity"/>
+        <activity android:name=".ui.new_channel.NewChannelActivity"/>
     </application>
 
 </manifest>

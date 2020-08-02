@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rocketpunch_interview.R
 import com.example.rocketpunch_interview.databinding.RowChannelBinding
 import com.example.rocketpunch_interview.model.Channel
-import com.example.rocketpunch_interview.model.MessageChannel
 
 
 class ChannelItemViewHolder(val binding: RowChannelBinding) : RecyclerView.ViewHolder(binding.root)
