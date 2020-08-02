@@ -20,4 +20,6 @@ interface DataSource {
     fun getChannelList()
     fun setChannelList(channel: Channel)
     fun openChannel(userList: List<User>)
+
+    fun sendChat(content: String)
 }

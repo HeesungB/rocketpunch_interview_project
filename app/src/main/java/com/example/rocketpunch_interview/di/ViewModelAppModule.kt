@@ -10,6 +10,6 @@ import org.koin.dsl.module
 var viewModelAppModule = module {
     viewModel { SplashViewModel(get()) }
     viewModel { ChannelViewModel(get(),get()) }
-    viewModel { ChatViewModel(get()) }
+    viewModel { ChatViewModel(get(), get()) }
     viewModel { NewMessageViewModel(get(), get()) }
 }

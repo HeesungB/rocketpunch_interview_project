@@ -1,10 +1,16 @@
 package com.example.rocketpunch_interview.data.datasource
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.rocketpunch_interview.model.*
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.type.DateTime
+import java.sql.Time
+import java.time.LocalDateTime
 import java.util.*
 
 
@@ -124,6 +130,19 @@ class FireStoreService(
             channelDto.currentChat,
             channelDto.unreadChatCount,
             getOpponentUser(channelDto.userList)
+        )
+    }
+
+    override fun sendChat(content: String) {
+        firebaseFirestore.collection("chat").add(
+            ChatDto(
+                _selectedChannel.value!!.idx,
+                _myUser.value!!,
+                _selectedChannel.value!!.opponentUser,
+                content,
+                Calendar.getInstance().time.toString(),
+                false
+            )
         )
     }
 
