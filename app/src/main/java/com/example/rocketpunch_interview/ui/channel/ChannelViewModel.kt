@@ -21,7 +21,7 @@ class ChannelViewModel(
 
     val channelList = channelRepository.channelList
 
-    fun onViewLoaded() {
+    fun onView() {
         channelRepository.getChannelList()
     }
 

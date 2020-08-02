@@ -2,6 +2,7 @@ package com.example.rocketpunch_interview.data.datasource
 
 import androidx.lifecycle.LiveData
 import com.example.rocketpunch_interview.model.Channel
+import com.example.rocketpunch_interview.model.Chat
 import com.example.rocketpunch_interview.model.MessageChannel
 import com.example.rocketpunch_interview.model.User
 
@@ -10,6 +11,7 @@ interface DataSource {
     val channelList: LiveData<List<Channel>>
     val searchedList: LiveData<List<User>>
     val selectedChannel: LiveData<Channel>
+    val chatList: LiveData<List<Chat>>
 
     fun setMyUser()
     fun createUser()
@@ -22,4 +24,5 @@ interface DataSource {
     fun openChannel(userList: List<User>)
 
     fun sendChat(content: String)
+    fun connectChatList()
 }

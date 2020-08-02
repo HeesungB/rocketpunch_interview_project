@@ -29,9 +29,9 @@ class ChatListViewHolder : RecyclerView.ViewHolder {
 
 }
 
-class ChatListAdapter(var items: ArrayList<Chat> = arrayListOf(), var viewModel: ChatViewModel): RecyclerView.Adapter<ChatListViewHolder>() {
+class ChatListAdapter(var items: List<Chat> = arrayListOf(), var viewModel: ChatViewModel): RecyclerView.Adapter<ChatListViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatListViewHolder {
-        return when (viewType) {
+        return when (items[viewType].viewType.index) {
             RowType.MYCHAT.index -> ChatListViewHolder(DataBindingUtil.inflate<RowMyChatBinding>(LayoutInflater.from(parent.context), R.layout.row_my_chat, parent, false))
             RowType.OTHERCHAT.index -> ChatListViewHolder(DataBindingUtil.inflate<RowOtherChatBinding>(LayoutInflater.from(parent.context), R.layout.row_other_chat, parent, false))
             else -> ChatListViewHolder(DataBindingUtil.inflate<RowOtherChatBinding>(LayoutInflater.from(parent.context), R.layout.row_my_chat, parent, false))
@@ -43,7 +43,8 @@ class ChatListAdapter(var items: ArrayList<Chat> = arrayListOf(), var viewModel:
     }
 
     override fun onBindViewHolder(holder: ChatListViewHolder, position: Int) {
-        when(holder.itemViewType) {
+
+        when(items[position].viewType.index) {
             RowType.MYCHAT.index -> {
                 holder.rowMyChatBinding.item = items[position]
                 holder.rowMyChatBinding.viewModel = viewModel
@@ -56,13 +57,13 @@ class ChatListAdapter(var items: ArrayList<Chat> = arrayListOf(), var viewModel:
     }
 
     override fun getItemViewType(position: Int): Int {
-        return items[position].viewType.index
+        return position
     }
 
 }
 
 @BindingAdapter(value = ["items", "viewModel"])
-fun bindItem(view: RecyclerView, items: ArrayList<Chat>?, viewModel: ChatViewModel) {
+fun bindItem(view: RecyclerView, items: List<Chat>?, viewModel: ChatViewModel) {
     items?.let {
         view.adapter?.run {
             if (this is ChatListAdapter) {

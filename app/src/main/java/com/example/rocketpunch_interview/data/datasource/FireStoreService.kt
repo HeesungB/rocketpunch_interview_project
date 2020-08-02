@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.rocketpunch_interview.model.*
+import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.type.DateTime
@@ -22,11 +23,13 @@ class FireStoreService(
     private val _channelList = MutableLiveData<List<Channel>>(listOf())
     private val _searchedList = MutableLiveData<List<User>>(listOf())
     private val _selectedChannel = MutableLiveData<Channel>()
+    private val _chatList = MutableLiveData<List<Chat>>(listOf())
 
     override val myUser: LiveData<User> get() = _myUser
     override val channelList: LiveData<List<Channel>> get() = _channelList
     override val searchedList: LiveData<List<User>> get() = _searchedList
     override val selectedChannel: LiveData<Channel> get() = _selectedChannel
+    override val chatList: LiveData<List<Chat>> get() = _chatList
 
     override fun setMyUser() {
         if (preferencesService.hasValue("user_id")) {
@@ -91,6 +94,7 @@ class FireStoreService(
             } else {
                 val channelDto = it.documents[0].toObject(ChannelDto::class.java)!!
                 setChannelList(convertChannel(channelDto,it.documents[0].id))
+
             }
         }
     }
@@ -143,6 +147,41 @@ class FireStoreService(
                 Calendar.getInstance().time.toString(),
                 false
             )
+        )
+    }
+
+    override fun connectChatList() {
+        firebaseFirestore.collection("chat").whereEqualTo("channelIdx", _selectedChannel.value!!.idx).orderBy("dateTime").addSnapshotListener { snapshots, e ->
+            if (e != null) {
+                Log.d("zz", "Listen failed.", e)
+                return@addSnapshotListener
+            }
+
+            val tempchatList = ArrayList<Chat>()
+            for (doc in snapshots!!) {
+                tempchatList.add(convertChat(doc.toObject(ChatDto::class.java)))
+            }
+
+            _chatList.value = tempchatList
+        }
+    }
+
+    private fun convertChat(chatDto: ChatDto): Chat {
+        lateinit var rowType: RowType
+        if (_myUser.value == chatDto.sender) {
+            rowType = RowType.MYCHAT
+        } else {
+            rowType = RowType.OTHERCHAT
+        }
+
+        return Chat(
+            chatDto.channelIdx,
+            chatDto.sender!!,
+            chatDto.receiver!!,
+            chatDto.content,
+            chatDto.dateTime,
+            chatDto.isRead,
+            rowType
         )
     }
 

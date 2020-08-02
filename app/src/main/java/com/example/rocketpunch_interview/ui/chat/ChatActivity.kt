@@ -14,7 +14,6 @@ class ChatActivity: BaseActivity<ActivityChatBinding, ChatViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         viewModel.isPageClosed.observe(this, Observer {
             finish()
         })

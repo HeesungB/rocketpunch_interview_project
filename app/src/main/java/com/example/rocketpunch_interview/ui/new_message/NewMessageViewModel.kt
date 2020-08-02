@@ -30,7 +30,7 @@ class NewMessageViewModel(
         _isPageClosed.call()
     }
 
-    fun onViewLoaded() {
+    override fun onViewLoaded() {
         userRepository.initUserSearchList()
     }
 

@@ -31,7 +31,7 @@ class ChannelActivity : BaseActivity<ActivityChannelBinding, ChannelViewModel>()
         super.onResume()
 
         viewModel.myUser.observe(this, Observer {
-            viewModel.onViewLoaded()
+            viewModel.onView()
         })
     }
 }
