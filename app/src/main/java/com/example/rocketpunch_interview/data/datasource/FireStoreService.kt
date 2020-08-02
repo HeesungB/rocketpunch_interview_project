@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.rocketpunch_interview.model.*
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -136,7 +137,7 @@ class FireStoreService(
                 _myUser.value!!,
                 _selectedChannel.value!!.opponentUser,
                 content,
-                Calendar.getInstance().time.toString(),
+                SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault()).format(Calendar.getInstance().time),
                 false
             )
         )
@@ -170,7 +171,7 @@ class FireStoreService(
             chatDto.sender!!,
             chatDto.receiver!!,
             chatDto.content,
-            chatDto.dateTime,
+            convertTime(chatDto.dateTime),
             chatDto.isRead,
             rowType
         )
@@ -178,6 +179,31 @@ class FireStoreService(
 
     override fun initChatList() {
         _chatList.value = listOf()
+    }
+
+    private fun convertTime(dateTime: String): String{
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault())
+        val convertedDateTime = simpleDateFormat.parse(dateTime)!!
+
+        val currentDateTime = Calendar.getInstance()
+        currentDateTime.setTime(convertedDateTime)
+
+        val prefix: String
+
+        var hours = currentDateTime.get(Calendar.HOUR_OF_DAY)
+        val minutes = currentDateTime.get(Calendar.MINUTE)
+
+        prefix = if(hours < 12) {
+            "오전"
+        } else {
+            "오후"
+        }
+
+        if (hours == 0) {
+           hours = 12
+        }
+
+        return "${prefix} ${String.format("%02d:%02d", hours, minutes)}"
     }
 
 }
