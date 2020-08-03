@@ -124,23 +124,30 @@ class FireStoreService(
         return Channel(
             idx,
             channelDto.userList,
-            channelDto.currentChat,
+            convertChat(channelDto.currentChat),
             channelDto.unreadChatCount,
             getOpponentUser(channelDto.userList)
         )
     }
 
     override fun sendChat(content: String) {
-        firebaseFirestore.collection("chat").add(
-            ChatDto(
-                _selectedChannel.value!!.idx,
-                _myUser.value!!,
-                _selectedChannel.value!!.opponentUser,
-                content,
-                SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault()).format(Calendar.getInstance().time),
-                false
-            )
+        val chatDto = ChatDto(
+            _selectedChannel.value!!.idx,
+            _myUser.value!!,
+            _selectedChannel.value!!.opponentUser,
+            content,
+            SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault()).format(Calendar.getInstance().time),
+            false
         )
+
+        firebaseFirestore.collection("chat").add(chatDto).addOnSuccessListener {
+            updateChannelCurrentChat(chatDto)
+        }
+    }
+
+    private fun updateChannelCurrentChat(chatDto: ChatDto) {
+        firebaseFirestore.collection("channel").document(chatDto.channelIdx).update("currentChat", chatDto)
+
     }
 
     override fun connectChatList() {
@@ -152,29 +159,34 @@ class FireStoreService(
 
             val tempChatList = ArrayList<Chat>(arrayListOf())
             for (doc in snapshots!!) {
-                tempChatList.add(convertChat(doc.toObject(ChatDto::class.java)))
+
+                convertChat(doc.toObject(ChatDto::class.java))?.let { tempChatList.add(it) }
             }
 
             _chatList.value = tempChatList
         }
     }
 
-    private fun convertChat(chatDto: ChatDto): Chat {
-        val rowType = if(_myUser.value == chatDto.sender) {
-            RowType.MYCHAT
-        } else {
-            RowType.OTHERCHAT
+    private fun convertChat(chatDto: ChatDto?): Chat? {
+        chatDto?.let {
+            val rowType = if(_myUser.value == chatDto.sender) {
+                RowType.MYCHAT
+            } else {
+                RowType.OTHERCHAT
+            }
+
+            return Chat(
+                chatDto.channelIdx,
+                chatDto.sender!!,
+                chatDto.receiver!!,
+                chatDto.content,
+                convertTime(chatDto.dateTime),
+                chatDto.isRead,
+                rowType
+            )
         }
 
-        return Chat(
-            chatDto.channelIdx,
-            chatDto.sender!!,
-            chatDto.receiver!!,
-            chatDto.content,
-            convertTime(chatDto.dateTime),
-            chatDto.isRead,
-            rowType
-        )
+        return null
     }
 
     override fun initSelectedChannel() {
