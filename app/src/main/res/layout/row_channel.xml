@@ -64,11 +64,16 @@
             />
 
         <TextView
-            android:id="@+id/message_content"
+            android:id="@+id/current_chat_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="200dp"
+            android:lines="2"
+            android:ellipsize="end"
+            android:singleLine="true"
             app:layout_constraintTop_toBottomOf="@+id/user_description"
-            app:layout_constraintStart_toEndOf="@id/user_info_guideline" />
+            app:layout_constraintStart_toEndOf="@id/user_info_guideline"
+            android:text="@{item.currentChat.content}"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/chat_status_guideline"

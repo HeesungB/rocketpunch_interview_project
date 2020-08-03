@@ -11,9 +11,9 @@
     <dimen name="edit_text_padding">15dp</dimen>
 
     <!-- Global User -->
-    <dimen name="user_profile_size">80dp</dimen>
+    <dimen name="user_profile_size">50dp</dimen>
     <dimen name="user_profile_margin">20dp</dimen>
-    <dimen name="user_info_vertical_guide_line_begin">110dp</dimen>
+    <dimen name="user_info_vertical_guide_line_begin">80dp</dimen>
     <dimen name="user_name_text_size">20sp</dimen>
 
     <!-- Activity Chat -->

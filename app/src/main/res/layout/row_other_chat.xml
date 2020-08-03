@@ -23,6 +23,7 @@
             android:maxWidth="@dimen/row_chat_content_max_width"
             android:padding="@dimen/row_chat_content_padding"
             android:layout_margin="@dimen/row_chat_content_margin"
+            android:autoLink="web"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:background="@drawable/other_chat_round_corner"

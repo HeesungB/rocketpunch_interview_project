@@ -34,6 +34,7 @@
             android:layout_height="0dp"
             android:padding="@dimen/row_chat_content_padding"
             android:layout_margin="@dimen/row_chat_content_margin"
+            android:autoLink="web"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:textColor="@color/colorWhite"
