@@ -30,5 +30,11 @@ class NewChannelActivity: BaseActivity<ActivityNewChannelBinding, NewChannelView
             startActivity(Intent(this, ChatActivity::class.java))
             finish()
         })
+
+        viewModel.selectedChannel.observe(this, Observer {
+            if (it != null) {
+                viewModel.moveToChatActivity()
+            }
+        })
     }
 }

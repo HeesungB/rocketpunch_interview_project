@@ -11,4 +11,5 @@ interface ChannelRepository {
     fun getChannelList()
     fun setChannel(channel: Channel)
     fun openChannel(userList: List<User>)
+    fun initSelectedChannel()
 }

@@ -20,4 +20,8 @@ class ChannelRepositoryImpl(private val dataSource: DataSource) : ChannelReposit
     override fun openChannel(userList: List<User>) {
         dataSource.openChannel(userList)
     }
+
+    override fun initSelectedChannel() {
+        dataSource.initSelectedChannel()
+    }
 }

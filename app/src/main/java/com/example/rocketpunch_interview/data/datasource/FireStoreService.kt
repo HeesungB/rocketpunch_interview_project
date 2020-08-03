@@ -150,7 +150,7 @@ class FireStoreService(
                 return@addSnapshotListener
             }
 
-            val tempChatList = ArrayList<Chat>()
+            val tempChatList = ArrayList<Chat>(arrayListOf())
             for (doc in snapshots!!) {
                 tempChatList.add(convertChat(doc.toObject(ChatDto::class.java)))
             }
@@ -177,6 +177,10 @@ class FireStoreService(
         )
     }
 
+    override fun initSelectedChannel() {
+        _selectedChannel.value = null
+    }
+
     override fun initChatList() {
         _chatList.value = listOf()
     }
@@ -186,24 +190,24 @@ class FireStoreService(
         val convertedDateTime = simpleDateFormat.parse(dateTime)!!
 
         val currentDateTime = Calendar.getInstance()
-        currentDateTime.setTime(convertedDateTime)
+        currentDateTime.time = convertedDateTime
 
-        val prefix: String
-
+        lateinit var prefix: String
         var hours = currentDateTime.get(Calendar.HOUR_OF_DAY)
         val minutes = currentDateTime.get(Calendar.MINUTE)
 
-        prefix = if(hours < 12) {
-            "오전"
+        if(hours < 12) {
+            prefix = "오전"
         } else {
-            "오후"
+            prefix = "오후"
+            hours -= 12
         }
 
         if (hours == 0) {
            hours = 12
         }
 
-        return "${prefix} ${String.format("%02d:%02d", hours, minutes)}"
+        return "$prefix $hours:${String.format("%02d", minutes)}"
     }
 
 }

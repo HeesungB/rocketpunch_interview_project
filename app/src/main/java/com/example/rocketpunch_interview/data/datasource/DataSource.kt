@@ -21,6 +21,7 @@ interface DataSource {
     fun getChannelList()
     fun setChannelList(channel: Channel)
     fun openChannel(userList: List<User>)
+    fun initSelectedChannel()
 
     fun sendChat(content: String)
     fun connectChatList()

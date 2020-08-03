@@ -9,7 +9,7 @@ import com.example.rocketpunch_interview.ui.base.BaseViewModel
 
 class ChatViewModel(
     private val chatRepository: ChatRepository,
-    channelRepository: ChannelRepository
+    private val channelRepository: ChannelRepository
 ): BaseViewModel() {
     private val _isPageClosed = SingleLiveEvent<Any>()
     val isPageClosed: LiveData<Any> get() = _isPageClosed
@@ -24,6 +24,7 @@ class ChatViewModel(
     }
 
     fun onClickBackButton() {
+        channelRepository.initSelectedChannel()
         chatRepository.initChatList()
         _isPageClosed.call()
     }

@@ -22,6 +22,9 @@ class NewChannelViewModel(
     val searchValue: MutableLiveData<String> get() = _searchValue
     val isChatStart: SingleLiveEvent<Any> get() = _isChatStart
 
+    val selectedChannel = channelRepository.selectedChannel
+
+
     fun searchUser(searchValue: String) {
         userRepository.searchUser(searchValue)
     }
@@ -37,6 +40,9 @@ class NewChannelViewModel(
 
     fun onClickSearchedUser(user: User) {
         channelRepository.openChannel(listOf(user, userRepository.myUser.value!!))
+    }
+
+    fun moveToChatActivity() {
         _isChatStart.call()
     }
 
