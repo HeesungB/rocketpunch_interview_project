@@ -7,6 +7,7 @@
 
     <!-- Channel Activity -->
     <string name="activity_channel_title">메시지</string>
+    <string name="activity_channel_logout_button">로그아웃</string>
 
     <!-- New Channel Activity -->
     <string name="activity_new_channel_title">새 메시지</string>

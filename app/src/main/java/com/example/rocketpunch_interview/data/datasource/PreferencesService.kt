@@ -17,4 +17,8 @@ class PreferencesService(context: Context) {
     fun setString(key: String, str: String) {
         sharedPreferences.edit().putString(key, str).apply()
     }
+
+    fun removeValue(key:String) {
+        sharedPreferences.edit().remove("user_id").apply()
+    }
 }

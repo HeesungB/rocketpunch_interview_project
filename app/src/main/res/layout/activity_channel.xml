@@ -15,6 +15,19 @@
         android:layout_height="match_parent"
         tools:context=".ui.channel.ChannelActivity">
 
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/header_top_margin"
+            android:text="@string/activity_channel_logout_button"
+            android:textSize="@dimen/header_button_text_size"
+            android:textColor="@color/colorPrimary"
+            android:background="@android:color/transparent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{() -> viewModel.onClickLogoutButton()}"/>
+
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"

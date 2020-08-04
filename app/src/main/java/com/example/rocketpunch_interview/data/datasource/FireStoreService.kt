@@ -44,6 +44,12 @@ class FireStoreService(
         _myUser.value = user
     }
 
+    override fun logoutUser() {
+        preferencesService.removeValue("user_id")
+
+        _myUser.value = null
+    }
+
     override fun initUserSearchList() {
         _searchedList.value = listOf()
     }

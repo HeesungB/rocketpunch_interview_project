@@ -8,7 +8,7 @@ import com.example.rocketpunch_interview.model.Channel
 import com.example.rocketpunch_interview.ui.base.BaseViewModel
 
 class ChannelViewModel(
-    userRepository: UserRepository,
+    private val userRepository: UserRepository,
     private val channelRepository: ChannelRepository
 ): BaseViewModel() {
     private val _isNewChannelPageOpen = SingleLiveEvent<Any>()
@@ -32,6 +32,10 @@ class ChannelViewModel(
     fun onClickChannelItem(channel: Channel) {
         channelRepository.setChannel(channel)
         _isChatPageOpen.call()
+    }
+
+    fun onClickLogoutButton() {
+        userRepository.logoutUser()
     }
 
 }

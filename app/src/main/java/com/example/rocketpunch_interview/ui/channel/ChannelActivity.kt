@@ -7,6 +7,7 @@ import com.example.rocketpunch_interview.R
 import com.example.rocketpunch_interview.databinding.ActivityChannelBinding
 import com.example.rocketpunch_interview.ui.base.BaseActivity
 import com.example.rocketpunch_interview.ui.chat.ChatActivity
+import com.example.rocketpunch_interview.ui.login.LoginActivity
 import com.example.rocketpunch_interview.ui.new_channel.NewChannelActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -24,14 +25,19 @@ class ChannelActivity : BaseActivity<ActivityChannelBinding, ChannelViewModel>()
         viewModel.isChatPageOpen.observe(this, Observer {
             startActivity(Intent(this, ChatActivity::class.java))
         })
-
     }
 
     override fun onResume() {
         super.onResume()
 
         viewModel.myUser.observe(this, Observer {
-            viewModel.onView()
+            if (it == null) {
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            } else {
+                viewModel.onView()
+            }
+
         })
     }
 }

@@ -17,6 +17,10 @@ class UserRepositoryImpl(private val dataSource: DataSource): UserRepository {
         dataSource.createUser()
     }
 
+    override fun logoutUser() {
+        dataSource.logoutUser()
+    }
+
     override fun initUserSearchList() {
         dataSource.initUserSearchList()
     }

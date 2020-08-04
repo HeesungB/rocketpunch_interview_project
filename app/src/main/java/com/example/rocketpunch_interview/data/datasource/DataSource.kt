@@ -14,6 +14,7 @@ interface DataSource {
 
     fun setMyUser()
     fun createUser()
+    fun logoutUser()
 
     fun initUserSearchList()
     fun searchUser(searchValue: String)
