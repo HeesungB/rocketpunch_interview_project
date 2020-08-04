@@ -27,7 +27,7 @@ class FireStoreService(
 
     override fun setMyUser() {
         if (preferencesService.hasValue("user_id")) {
-            firebaseFirestore.collection("users").whereEqualTo("id", preferencesService.getString("user_id","")).get().addOnSuccessListener {
+            firebaseFirestore.collection("user").whereEqualTo("id", preferencesService.getString("user_id","")).get().addOnSuccessListener {
                 _myUser.value = it.documents[0].toObject(User::class.java)
             }
         } else {
@@ -38,7 +38,7 @@ class FireStoreService(
     override fun createUser() {
         val uniqueID = UUID.randomUUID().toString()
         val user = User(uniqueID, "이름", "직업", "")
-        firebaseFirestore.collection("users").add(user)
+        firebaseFirestore.collection("user").add(user)
         preferencesService.setString("user_id",uniqueID)
 
         _myUser.value = user
@@ -57,7 +57,7 @@ class FireStoreService(
 
     override fun searchUser(searchValue: String) {
         if(searchValue.length >= 2) {
-            firebaseFirestore.collection("users").orderBy("name").startAt(searchValue).endAt(searchValue+'\uf8ff').get().addOnSuccessListener { documents ->
+            firebaseFirestore.collection("user").orderBy("name").startAt(searchValue).endAt(searchValue+'\uf8ff').get().addOnSuccessListener { documents ->
                 val documentUserList = arrayListOf<User>()
 
                 for (document in documents) {
