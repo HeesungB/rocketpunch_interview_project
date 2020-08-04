@@ -16,7 +16,7 @@ class NewChannelActivity: BaseActivity<ActivityNewChannelBinding, NewChannelView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.onViewLoaded()
+        viewModel.onLoadedView()
 
         viewModel.searchValue.observe(this, Observer {
             viewModel.searchUser(it)

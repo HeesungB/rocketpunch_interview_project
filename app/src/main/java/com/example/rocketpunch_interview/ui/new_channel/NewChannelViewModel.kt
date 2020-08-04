@@ -34,7 +34,7 @@ class NewChannelViewModel(
         _isPageClosed.call()
     }
 
-    override fun onViewLoaded() {
+    override fun onLoadedView() {
         userRepository.initUserSearchList()
     }
 

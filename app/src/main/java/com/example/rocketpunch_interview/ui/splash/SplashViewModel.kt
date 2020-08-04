@@ -6,7 +6,7 @@ import com.example.rocketpunch_interview.ui.base.BaseViewModel
 class SplashViewModel(private val userRepository: UserRepository): BaseViewModel() {
     val myUser = userRepository.myUser
 
-    override fun onViewLoaded() {
+    override fun onLoadedView() {
         userRepository.setMyUser()
     }
 }

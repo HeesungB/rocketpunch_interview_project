@@ -2,7 +2,6 @@ package com.example.rocketpunch_interview.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.rocketpunch_interview.ui.channel.ChannelActivity
@@ -15,7 +14,7 @@ class SplashActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.onViewLoaded()
+        viewModel.onLoadedView()
 
         viewModel.myUser.observe(this, Observer {
             if (it == null) {

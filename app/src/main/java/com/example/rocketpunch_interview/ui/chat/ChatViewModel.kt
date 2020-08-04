@@ -19,7 +19,7 @@ class ChatViewModel(
 
     var currentContent = MutableLiveData<String>()
 
-    override fun onViewLoaded() {
+    override fun onLoadedView() {
         chatRepository.connectChatList()
     }
 
@@ -29,7 +29,7 @@ class ChatViewModel(
         _isPageClosed.call()
     }
 
-    fun sendChat() {
+    fun onClickChatSendButton() {
         chatRepository.sendChat(currentContent.value!!)
 
         currentContent.value = ""

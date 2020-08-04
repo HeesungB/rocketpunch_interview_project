@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#5163F6</color>
-    <color name="colorAccent">#5163F6</color>
 
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorMessageCountBox">#EE7E88</color>

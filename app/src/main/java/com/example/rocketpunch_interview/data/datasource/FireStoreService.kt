@@ -167,14 +167,14 @@ class FireStoreService(
     }
 
     private fun updateChannelCurrentChat(chatDto: ChatDto) {
-        val documentReference = firebaseFirestore.collection("channel").document(chatDto.channelIdx)
+        val channelDocumentReference = firebaseFirestore.collection("channel").document(chatDto.channelIdx)
 
         firebaseFirestore.runTransaction { transaction ->
-            val snapshot = transaction.get(documentReference)
+            val snapshot = transaction.get(channelDocumentReference)
 
             val unreadChatCount = snapshot.getDouble("unreadChatCount")!! + 1
-            transaction.update(documentReference, "currentChat", chatDto)
-            transaction.update(documentReference, "unreadChatCount", unreadChatCount)
+            transaction.update(channelDocumentReference, "currentChat", chatDto)
+            transaction.update(channelDocumentReference, "unreadChatCount", unreadChatCount)
         }
 
     }

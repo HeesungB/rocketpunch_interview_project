@@ -8,7 +8,7 @@ class LoginViewModel(
 ): BaseViewModel() {
     val myUser = userRepository.myUser
 
-    fun onLoginButtonClick() {
+    fun onClickLoginButton() {
         userRepository.createUser()
     }
 }
