@@ -1,10 +1,12 @@
 package com.example.rocketpunch_interview.ui.splash
 
-import androidx.lifecycle.ViewModel
 import com.example.rocketpunch_interview.data.repository.user.UserRepository
+import com.example.rocketpunch_interview.ui.base.BaseViewModel
 
-class SplashViewModel(private val userRepository: UserRepository): ViewModel() {
-    fun onAppStart() {
+class SplashViewModel(private val userRepository: UserRepository): BaseViewModel() {
+    val myUser = userRepository.myUser
+
+    override fun onViewLoaded() {
         userRepository.setMyUser()
     }
 }

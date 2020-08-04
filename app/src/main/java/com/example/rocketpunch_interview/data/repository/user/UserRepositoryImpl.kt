@@ -13,6 +13,10 @@ class UserRepositoryImpl(private val dataSource: DataSource): UserRepository {
         dataSource.setMyUser()
     }
 
+    override fun createUser() {
+        dataSource.createUser()
+    }
+
     override fun initUserSearchList() {
         dataSource.initUserSearchList()
     }

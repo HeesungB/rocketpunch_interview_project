@@ -8,6 +8,7 @@ interface UserRepository {
     val searchedList: LiveData<List<User>>
 
     fun setMyUser()
+    fun createUser()
 
     fun initUserSearchList()
     fun searchUser(searchValue: String)

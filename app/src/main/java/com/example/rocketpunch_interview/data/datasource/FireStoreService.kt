@@ -31,7 +31,7 @@ class FireStoreService(
                 _myUser.value = it.documents[0].toObject(User::class.java)
             }
         } else {
-            createUser()
+            _myUser.value = null
         }
     }
 
