@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     
     <data>
+        <import type="android.view.View"/>
         <variable
             name="item"
             type="com.example.rocketpunch_interview.model.Channel" />
@@ -92,10 +93,11 @@
             />
 
         <TextView
-            android:id="@+id/message_unread_count"
+            android:id="@+id/channel_unread_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/row_channel_unread_count_padding"
+            android:visibility="@{(item.currentChat.sender.equals(viewModel.myUser)) ? View.GONE : (item.unreadChatCount == 0 ? View.GONE : View.VISIBLE )}"
             app:layout_constraintTop_toBottomOf="@+id/chat_time_ago"
             app:layout_constraintEnd_toEndOf="@id/chat_status_guideline"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -65,10 +65,15 @@ class FireStoreService(
     }
 
     override fun getChannelList() {
-        firebaseFirestore.collection("channel").whereArrayContainsAny("userList", arrayListOf(myUser.value)).get().addOnSuccessListener { documents ->
+        firebaseFirestore.collection("channel").whereArrayContainsAny("userList", arrayListOf(myUser.value)).addSnapshotListener { snapshots, e ->
+            if (e != null) {
+                Log.d("zz", "Listen failed.", e)
+                return@addSnapshotListener
+            }
+
             val documentChannelList = arrayListOf<Channel>()
 
-            for (document in documents) {
+            for (document in snapshots!!) {
                 val channelDto = document.toObject(ChannelDto::class.java)
                 documentChannelList.add(convertChannel(channelDto, document.id))
             }
@@ -78,7 +83,17 @@ class FireStoreService(
     }
 
     override fun setChannelList(channel: Channel) {
+        val sender = channel.currentChat?.sender?.id
+        val myUserId = _myUser.value?.id
+        if (sender != myUserId) {
+            resetChannelUnreadCount(channel.idx)
+        }
+
         _selectedChannel.value = channel
+    }
+
+    private fun resetChannelUnreadCount(channelIdx: String) {
+        firebaseFirestore.collection("channel").document(channelIdx).update("unreadChatCount", 0)
     }
 
     override fun openChannel(userList: List<User>) {
@@ -146,7 +161,15 @@ class FireStoreService(
     }
 
     private fun updateChannelCurrentChat(chatDto: ChatDto) {
-        firebaseFirestore.collection("channel").document(chatDto.channelIdx).update("currentChat", chatDto)
+        val documentReference = firebaseFirestore.collection("channel").document(chatDto.channelIdx)
+
+        firebaseFirestore.runTransaction { transaction ->
+            val snapshot = transaction.get(documentReference)
+
+            val unreadChatCount = snapshot.getDouble("unreadChatCount")!! + 1
+            transaction.update(documentReference, "currentChat", chatDto)
+            transaction.update(documentReference, "unreadChatCount", unreadChatCount)
+        }
 
     }
 
@@ -159,7 +182,6 @@ class FireStoreService(
 
             val tempChatList = ArrayList<Chat>(arrayListOf())
             for (doc in snapshots!!) {
-
                 convertChat(doc.toObject(ChatDto::class.java))?.let { tempChatList.add(it) }
             }
 
