@@ -2,6 +2,9 @@
     <!-- Global -->
     <string name="app_name">RocketPunch_Interview</string>
 
+    <!-- Login Activity -->
+    <string name="activity_login_button">로그인</string>
+
     <!-- Channel Activity -->
     <string name="activity_channel_title">메시지</string>
 

@@ -16,6 +16,12 @@
     <dimen name="user_info_vertical_guide_line_begin">80dp</dimen>
     <dimen name="user_name_text_size">20sp</dimen>
 
+    <!-- Activity Login -->
+    <dimen name="activity_login_logo_size">200dp</dimen>
+    <dimen name="activity_login_button_width">300dp</dimen>
+    <dimen name="activity_login_button_height">60dp</dimen>
+    <dimen name="activity_login_button_text_size">20sp</dimen>
+
     <!-- Activity Chat -->
     <dimen name="activity_chat_bottom_guide_line_end">80dp</dimen>
 
