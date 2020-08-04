@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
+
         <variable
             name="viewModel"
             type="com.example.rocketpunch_interview.ui.channel.ChannelViewModel" />
@@ -20,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/header_top_margin"
-            android:text="@string/activity_channel_logout_button"
+            android:text="@string/activity_channel_logout_button_text"
             android:textSize="@dimen/header_button_text_size"
             android:textColor="@color/colorPrimary"
             android:background="@android:color/transparent"
@@ -70,6 +72,21 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:items="@{viewModel.channelList}"
             app:viewModel="@{viewModel}" />
+
+        <TextView
+            android:id="@+id/emtpy_chat_list_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_channel_empty_chat_list_text"
+            android:textSize="@dimen/activity_channel_empty_chat_list_text_size"
+            android:textAlignment="center"
+            android:lineSpacingMultiplier="1.3"
+            android:gravity="center_horizontal"
+            android:visibility="@{viewModel.channelList.empty ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

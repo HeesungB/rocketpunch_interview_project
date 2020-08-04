@@ -48,6 +48,7 @@ class FireStoreService(
         preferencesService.removeValue("user_id")
 
         _myUser.value = null
+        _channelList.value = null
     }
 
     override fun initUserSearchList() {
